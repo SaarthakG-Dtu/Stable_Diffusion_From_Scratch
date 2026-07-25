@@ -401,13 +401,13 @@ What to look for in the strips: the cosine schedule typically shows more legible
 #### Prompt 2 — "A futuristic city skyline at night with neon lights, cinematic"
 
 **Linear**
-[![T2I city skyline — linear strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_linear.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_linear.png)
+[![T2I city skyline — linear strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_linear.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with__linear.png)
 
 **Cosine**
-[![T2I city skyline — cosine strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_cosine.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_cosine.png)
+[![T2I city skyline — cosine strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_cosine.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with__cosine.png)
 
 **Final comparison (linear vs cosine)**
-[![T2I city skyline — comparison](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with.png)](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with.png)
+[![T2I city skyline — comparison](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with.png)](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with_.png)
 
 ---
 
@@ -443,26 +443,26 @@ Starting from the re-noised dog image (strength=0.75), the model denoises toward
 #### Prompt 1 — "A golden retriever wearing a red scarf, studio lighting"
 
 **Linear**
-[![I2I golden retriever — linear](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_linear.png)](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_linear.png)
+[![I2I golden retriever — linear](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_linear.png)](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf__linear.png)
 
 **Cosine**
-[![I2I golden retriever — cosine](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_cosine.png)](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_cosine.png)
+[![I2I golden retriever — cosine](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_cosine.png)](sd/ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf__cosine.png)
 
 **Final comparison (linear vs cosine)**
-[![I2I golden retriever — comparison](sd/ablation_results/i2i_comparison_a_golden_retriever_wearing_a_red_scarf.png)](sd/ablation_results/i2i_comparison_a_golden_retriever_wearing_a_red_scarf.png)
+[![I2I golden retriever — comparison](sd/ablation_results/i2i_comparison_a_golden_retriever_wearing_a_red_scarf.png)](sd/ablation_results/i2i_comparison_a_golden_retriever_wearing_a_red_scarf_.png)
 
 ---
 
 #### Prompt 2 — "An oil painting of a dog in the style of Van Gogh"
 
 **Linear**
-[![I2I Van Gogh — linear](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_linear.png)](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_linear.png)
+[![I2I Van Gogh — linear](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_linear.png)](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_linear.png)
 
 **Cosine**
-[![I2I Van Gogh — cosine](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_cosine.png)](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_cosine.png)
+[![I2I Van Gogh — cosine](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_cosine.png)](sd/ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_cosine.png)
 
 **Final comparison (linear vs cosine)**
-[![I2I Van Gogh — comparison](sd/ablation_results/i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of_van_gogh.png)](sd/ablation_results/i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of_van_gogh.png)
+[![I2I Van Gogh — comparison](sd/ablation_results/i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of_van_gogh.png)](sd/ablation_results/i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of.png)
 
 ### Denoising Progression Strips
 
