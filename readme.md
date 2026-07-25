@@ -54,7 +54,8 @@ A clean, fully explicit PyTorch implementation of Stable Diffusion v1.5. Every c
 │   └── v1-5-pruned-emaonly.ckpt     # SD 1.5 weights — download separately
 │
 ├── images/
-│   └── dog.jpg                      # Input image for image-to-image ablation
+│   ├── dog.jpg                      # Input image for image-to-image ablation
+│   └── ddpm.png                     # DDPM forward/reverse process diagram
 │
 └── ablation_results/                # Created automatically by ablation.py
     ├── schedule_comparison.png
@@ -87,6 +88,8 @@ Download the CLIP tokenizer files (`vocab.json`, `merges.txt`) from the same rep
 ### Diffusion Models
 
 Diffusion models are a class of generative models trained to learn the reverse of a noise-addition process. The core idea, introduced by Ho et al. (2020), is to define a **forward process** that gradually corrupts data into pure Gaussian noise over $T$ timesteps, and to train a neural network to invert that process — predicting the noise at each step so the original signal can be recovered.
+
+![DDPM forward and reverse process](images/ddpm.png)
 
 Formally, given a data sample $\mathbf{x}_0 \sim q(\mathbf{x})$, the forward process defines a Markov chain of increasingly noisy latents $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_T$:
 
@@ -360,6 +363,8 @@ The two schedules differ only in the noise schedule $\{\beta_t\}$ — everything
 
 ### Schedule Comparison Curve
 
+![Alpha-bar curves: linear vs cosine](ablation_results/schedule_comparison.png)
+
 `ablation_results/schedule_comparison.png` — plots $\bar{\alpha}_t$ for both schedules over the full 1000 training steps.
 
 The cosine curve decays more slowly through mid-noise levels and more steeply near $t=0$ and $t=T$ compared to the linear schedule. This means:
@@ -375,14 +380,29 @@ For each prompt and each schedule, a horizontal denoising strip is saved alongsi
 
 Seven snapshots are captured at steps 0, 8, 16, 24, 32, 40, and 49 of the 50-step inference chain. Intermediate snapshots (steps 0–40) show the raw latent channels normalised to [0,1] — this renders the latent content as a meaningful colour image even under high noise, making the progressive structure emergence visible. The final frame (step 49) is decoded through the full VAE for the true output image.
 
-Example outputs for the prompt *"A futuristic city skyline at night with neon lights, cinematic"*:
+#### Prompt 1 — "A serene mountain lake at sunset, photorealistic, 8K"
 
-```
-ablation_results/
-├── t2i_a_futuristic_city_skyline_at_night_with_neon_lights_linear.png
-├── t2i_a_futuristic_city_skyline_at_night_with_neon_lights_cosine.png
-└── t2i_comparison_a_futuristic_city_skyline_at_night_with_neon_lights.png
-```
+| Linear | Cosine |
+|--------|--------|
+| [![T2I mountain lake linear strip](ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_linear.png)](ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_linear.png) | [![T2I mountain lake cosine strip](ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_cosine.png)](ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_cosine.png) |
+
+[![Side-by-side final images — mountain lake](ablation_results/t2i_comparison_a_serene_mountain_lake_at_sunset_photorealistic.png)](ablation_results/t2i_comparison_a_serene_mountain_lake_at_sunset_photorealistic.png)
+
+#### Prompt 2 — "A futuristic city skyline at night with neon lights, cinematic"
+
+| Linear | Cosine |
+|--------|--------|
+| [![T2I city skyline linear strip](ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_linear.png)](ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_linear.png) | [![T2I city skyline cosine strip](ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_cosine.png)](ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_cosine.png) |
+
+[![Side-by-side final images — city skyline](ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with_neon_lights.png)](ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with_neon_lights.png)
+
+#### Prompt 3 — "A close-up portrait of a red fox in a snowy forest"
+
+| Linear | Cosine |
+|--------|--------|
+| [![T2I red fox linear strip](ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_linear.png)](ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_linear.png) | [![T2I red fox cosine strip](ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_cosine.png)](ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_cosine.png) |
+
+[![Side-by-side final images — red fox](ablation_results/t2i_comparison_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest.png)](ablation_results/t2i_comparison_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest.png)
 
 What to look for in the strips: the cosine schedule typically shows more legible structure earlier in the denoising chain (around steps 16–24), while the linear schedule tends to hold noise longer before resolving. Final image quality differences are usually subtle but observable in fine detail and high-frequency textures.
 
@@ -392,18 +412,29 @@ What to look for in the strips: the cosine schedule typically shows more legible
 
 Shows the input dog image at increasing noise levels under $q(\mathbf{x}_t|\mathbf{x}_0)$: $t = 0, 100, 250, 500, 750, 999$. This directly visualises how each schedule destroys structure. The cosine schedule retains recognisable dog features further along the noise axis — you can typically still make out the shape at $t=250$–$t=500$, whereas the linear schedule produces near-pure noise earlier. This difference is what makes the cosine schedule preferable for image-to-image tasks with high strength, where the re-noised image needs to retain enough signal for the decoder to respect the original composition.
 
+| Linear forward noise | Cosine forward noise |
+|----------------------|----------------------|
+| [![Forward noise linear](ablation_results/i2i_forward_noise_linear.png)](ablation_results/i2i_forward_noise_linear.png) | [![Forward noise cosine](ablation_results/i2i_forward_noise_cosine.png)](ablation_results/i2i_forward_noise_cosine.png) |
+
 **Denoising strips** (`i2i_<slug>_<schedule>.png`):
 
 Starting from the re-noised dog image (strength=0.75), the model denoises toward the conditioning prompt. The I2I strips show how well each schedule preserves the original image's compositional structure while transforming it according to the text.
 
-Example for *"An oil painting of a dog in the style of Van Gogh"*:
+#### Prompt 1 — "A golden retriever wearing a red scarf, studio lighting"
 
-```
-ablation_results/
-├── i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_linear.png
-├── i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_cosine.png
-└── i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of_van_gogh.png
-```
+| Linear | Cosine |
+|--------|--------|
+| [![I2I golden retriever linear](ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_linear.png)](ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_linear.png) | [![I2I golden retriever cosine](ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_cosine.png)](ablation_results/i2i_a_golden_retriever_wearing_a_red_scarf_cosine.png) |
+
+[![Side-by-side — golden retriever](ablation_results/i2i_comparison_a_golden_retriever_wearing_a_red_scarf.png)](ablation_results/i2i_comparison_a_golden_retriever_wearing_a_red_scarf.png)
+
+#### Prompt 2 — "An oil painting of a dog in the style of Van Gogh"
+
+| Linear | Cosine |
+|--------|--------|
+| [![I2I Van Gogh linear](ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_linear.png)](ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_linear.png) | [![I2I Van Gogh cosine](ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_cosine.png)](ablation_results/i2i_an_oil_painting_of_a_dog_in_the_style_of_van_gogh_cosine.png) |
+
+[![Side-by-side — Van Gogh](ablation_results/i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of_van_gogh.png)](ablation_results/i2i_comparison_an_oil_painting_of_a_dog_in_the_style_of_van_gogh.png)
 
 ### Denoising Progression Strips
 
