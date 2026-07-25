@@ -179,14 +179,15 @@ Standard conditional diffusion trains $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t
 
 At inference, the conditional and unconditional noise predictions are combined:
 
-$$\tilde{\boldsymbol{\epsilon}}_\theta(\mathbf{x}_t, t, c) = \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset) + w\,\bigl[\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c) - \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset)\bigr]$$
+```math
+\tilde{\boldsymbol{\epsilon}}_\theta(\mathbf{x}_t, t, c) = \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset) + w\,\bigl[\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c) - \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset)\bigr]
+```
 
-where $w$ is the **guidance scale** (`cfg_scale`). A higher $w$ pushes the sample further in the direction of the conditioning, increasing prompt adherence at the cost of diversity and sometimes image naturalness. Values in the range $7$–$12$ are typical for Stable Diffusion.
+where $w$ is the guidance scale (`cfg_scale`). A higher $w$ pushes the sample further in the direction of the conditioning, increasing prompt adherence at the cost of diversity and sometimes image naturalness. Values in the range $7$–$12$ are typical for Stable Diffusion.
 
 In practice the two forward passes are batched:
 
 ```python
-# pipeline.py
 model_input = latents.repeat(2, 1, 1, 1)          # [cond; uncond] batch
 model_output = diffusion(model_input, context, time_embedding)
 out_cond, out_uncond = model_output.chunk(2)
