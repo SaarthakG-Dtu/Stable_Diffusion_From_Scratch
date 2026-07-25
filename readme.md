@@ -2,7 +2,7 @@
 
 A clean, fully explicit PyTorch implementation of Stable Diffusion v1.5. Every component — the VAE, the CLIP text encoder, the UNet denoiser, and the DDPM sampler — is written from first principles without hiding logic behind library abstractions. Built for learning, experimentation, and ablation studies.
 
-![Stable Diffusion generated sample](sd/images/sd.png)
+![Stable Diffusion generated sample](images/sd.jpg)
 
 ---
 
@@ -92,7 +92,7 @@ Download the CLIP tokenizer files (`vocab.json`, `merges.txt`) from the same rep
 
 Diffusion models are a class of generative models trained to learn the reverse of a noise-addition process. The core idea, introduced by Ho et al. (2020), is to define a **forward process** that gradually corrupts data into pure Gaussian noise over $T$ timesteps, and to train a neural network to invert that process — predicting the noise at each step so the original signal can be recovered.
 
-![DDPM forward and reverse process](sd/images/ddpm.png)
+![DDPM forward and reverse process](images/ddpm.png)
 
 Formally, given a data sample $\mathbf{x}_0 \sim q(\mathbf{x})$, the forward process defines a Markov chain of increasingly noisy latents $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_T$:
 
