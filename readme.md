@@ -175,12 +175,12 @@ Both schedules share identical API; swap by passing `schedule="linear"` or `sche
 
 ### Classifier-Free Guidance
 
-Standard conditional diffusion trains $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c)$ where $c$ is the conditioning signal (here, CLIP text embeddings). Classifier-Free Guidance (CFG; Ho & Salimans, 2022) improves sample quality by jointly training a conditional and unconditional model with a single network. During training, the conditioning is randomly dropped with probability $p_{\text{uncond}}$, forcing the network to also learn $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset)$.
+Standard conditional diffusion trains $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c)$ where $c$ is the conditioning signal (here, CLIP text embeddings). Classifier-Free Guidance (CFG; Ho & Salimans, 2022) improves sample quality by jointly training a conditional and unconditional model with a single network. During training, the conditioning is randomly dropped with probability $p_{\text{uncond}}$, forcing the network to also learn $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \varnothing)$.
 
 At inference, the conditional and unconditional noise predictions are combined:
 
 ```math
-\tilde{\boldsymbol{\epsilon}}_\theta(\mathbf{x}_t, t, c) = \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset) + w\,\bigl[\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c) - \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \emptyset)\bigr]
+\boldsymbol{\tilde{\epsilon}}_\theta(\mathbf{x}_t, t, c) = \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \varnothing) + w\,\bigl[\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c) - \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \varnothing)\bigr]
 ```
 
 where $w$ is the guidance scale (`cfg_scale`). A higher $w$ pushes the sample further in the direction of the conditioning, increasing prompt adherence at the cost of diversity and sometimes image naturalness. Values in the range $7$–$12$ are typical for Stable Diffusion.
