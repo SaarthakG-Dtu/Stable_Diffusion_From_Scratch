@@ -2,7 +2,7 @@
 
 A clean, fully explicit PyTorch implementation of Stable Diffusion v1.5. Every component — the VAE, the CLIP text encoder, the UNet denoiser, and the DDPM sampler — is written from first principles without hiding logic behind library abstractions. Built for learning, experimentation, and ablation studies.
 
-![Stable Diffusion generated sample](images/sd.jpg)
+![Stable Diffusion generated sample](images/sd.jpeg)
 
 ---
 
@@ -388,39 +388,39 @@ What to look for in the strips: the cosine schedule typically shows more legible
 #### Prompt 1 — "A serene mountain lake at sunset, photorealistic, 8K"
 
 **Linear**
-[![T2I mountain lake — linear strip](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_linear.png)](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_linear.png)
+[![T2I mountain lake — linear strip](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photor_linear.png)](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photor_linear.png)
 
 **Cosine**
-[![T2I mountain lake — cosine strip](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_cosine.png)](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photorealistic_cosine.png)
+[![T2I mountain lake — cosine strip](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photor_cosine.png)](sd/ablation_results/t2i_a_serene_mountain_lake_at_sunset_photor_cosine.png)
 
 **Final comparison (linear vs cosine)**
-[![T2I mountain lake — comparison](sd/ablation_results/t2i_comparison_a_serene_mountain_lake_at_sunset_photorealistic.png)](sd/ablation_results/t2i_comparison_a_serene_mountain_lake_at_sunset_photorealistic.png)
+[![T2I mountain lake — comparison](sd/ablation_results/t2i_comparison_a_serene_mountain_lake_at_sunset_photor.png)](sd/ablation_results/t2i_comparison_a_serene_mountain_lake_at_sunset_photor.png)
 
 ---
 
 #### Prompt 2 — "A futuristic city skyline at night with neon lights, cinematic"
 
 **Linear**
-[![T2I city skyline — linear strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_linear.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_linear.png)
+[![T2I city skyline — linear strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_linear.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_linear.png)
 
 **Cosine**
-[![T2I city skyline — cosine strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_cosine.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_neon_lights_cosine.png)
+[![T2I city skyline — cosine strip](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_cosine.png)](sd/ablation_results/t2i_a_futuristic_city_skyline_at_night_with_cosine.png)
 
 **Final comparison (linear vs cosine)**
-[![T2I city skyline — comparison](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with_neon_lights.png)](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with_neon_lights.png)
+[![T2I city skyline — comparison](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with.png)](sd/ablation_results/t2i_comparison_a_futuristic_city_skyline_at_night_with.png)
 
 ---
 
 #### Prompt 3 — "A close-up portrait of a red fox in a snowy forest"
 
 **Linear**
-[![T2I red fox — linear strip](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_linear.png)](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_linear.png)
+[![T2I red fox — linear strip](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_sn_linear.png)](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_sn_linear.png)
 
 **Cosine**
-[![T2I red fox — cosine strip](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_cosine.png)](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest_cosine.png)
+[![T2I red fox — cosine strip](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_sn_cosine.png)](sd/ablation_results/t2i_a_close-up_portrait_of_a_red_fox_in_a_sn_cosine.png)
 
 **Final comparison (linear vs cosine)**
-[![T2I red fox — comparison](sd/ablation_results/t2i_comparison_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest.png)](sd/ablation_results/t2i_comparison_a_close-up_portrait_of_a_red_fox_in_a_snowy_forest.png)
+[![T2I red fox — comparison](sd/ablation_results/t2i_comparison_a_close-up_portrait_of_a_red_fox_in_a_sn.png)](sd/ablation_results/t2i_comparison_a_close-up_portrait_of_a_red_fox_in_a_sn.png)
 
 ### Image-to-Image Results
 
