@@ -175,7 +175,7 @@ Both schedules share identical API; swap by passing `schedule="linear"` or `sche
 
 ### Classifier-Free Guidance
 
-Standard conditional diffusion trains $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, c)$ where $c$ is the conditioning signal (here, CLIP text embeddings). Classifier-Free Guidance (CFG; Ho & Salimans, 2022) improves sample quality by jointly training a conditional and unconditional model with a single network. During training, the conditioning is randomly dropped with probability $p_{\text{uncond}}$, forcing the network to also learn $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \varnothing)$.
+Standard conditional diffusion trains $\epsilon_\theta(\mathbf{x}_t, t, c)$ where $c$ is the conditioning signal (here, CLIP text embeddings). Classifier-Free Guidance (CFG; Ho & Salimans, 2022) improves sample quality by jointly training a conditional and unconditional model with a single network. During training, the conditioning is randomly dropped with probability $p_{\text{uncond}}$, forcing the network to also learn $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \varnothing)$.
 
 At inference, the conditional and unconditional noise predictions are combined:
 
